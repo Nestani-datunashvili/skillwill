@@ -24,26 +24,26 @@
 
 // task 3--------------------
 
-// let handleCalculate = (a, b, opertor) => {
-//   if (typeof a !== "number" || typeof b !== "number") return false;
+let handleCalculate = (a, b, opertor) => {
+  if (typeof a !== "number" || typeof b !== "number") return false;
 
-//   switch (opertor) {
-//     case "+":
-//       return a + b;
-//       break;
-//     case "-":
-//       return a - b;
-//       break;
-//     case "/":
-//       return a / b;
-//       break;
-//     case "*":
-//       return a * b;
-//       break;
-//     default:
-//       return false;
-//   }
-// };
+  switch (opertor) {
+    case "+":
+      return a + b;
+      break;
+    case "-":
+      return a - b;
+      break;
+    case "/":
+      return a / b;
+      break;
+    case "*":
+      return a * b;
+      break;
+    default:
+      return false;
+  }
+};
 
-// const result = handleCalculate(1, 20, "*");
-// console.log(result);
+const result = handleCalculate(1, 20, "*");
+console.log(result);
