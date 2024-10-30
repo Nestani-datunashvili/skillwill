@@ -1,49 +1,61 @@
-// task 1 --------------
-// let handleEquals = (a, b) => {
-//   if (a == b) {
-//     return `equals`;
-//   } else {
-//     return `Doesn't equals`;
-//   }
+// let users = [
+//   { name: "Temo", age: 25 },
+//   { name: "Lasha", age: 21 },
+//   { name: "Ana", age: 28 },
+// ];
+// // task 1 -------------------
+// let younger = (users) => {
+//   let ages = users.map((user) => user.age);
+//   return Math.min(...ages);
 // };
-
-// const result = handleEquals(2, 2);
-
+// let result = younger(users);
 // console.log(result);
-
-// task 2 --------------------
-
-// let fharengateToCelcius = (f) => {
-//   if (typeof f !== "number") return false;
-
-//   return (f - 32) / 1.8;
+// task 2 ---------
+// let user = {
+//   name: "nestani",
+//   lastName: "datunashvili",
+//   age: 28,
 // };
-
-// const result = fharengateToCelcius(true);
+// let newObJ = (user) => {
+//   const newObject = {};
+//   Object.entries(user).forEach((entry) => {
+//     newObject[entry[0]] = entry[1];
+//   });
+//   return newObject;
+// };
+// let result = newObJ(user);
 // console.log(result);
+// console.log(user);
+// task 3 ---------------
 
-// task 3--------------------
+const rollDice = () => Math.floor(Math.random() * 6) + 1;
 
-let handleCalculate = (a, b, opertor) => {
-  if (typeof a !== "number" || typeof b !== "number") return false;
+let checkWinner = () => {
+  let attemptsA = 0;
+  let attemptsB = 0;
+  let rollA, rollB;
 
-  switch (opertor) {
-    case "+":
-      return a + b;
-      break;
-    case "-":
-      return a - b;
-      break;
-    case "/":
-      return a / b;
-      break;
-    case "*":
-      return a * b;
-      break;
-    default:
-      return false;
+  while (true) {
+    // A
+    rollA = rollDice();
+    attemptsA++;
+    console.log(`Player A rolled: ${rollA}`);
+
+    if (rollA === 3) {
+      console.log(`Player A wins with ${attemptsA} attempts!`);
+      return `Winner: Player A`;
+    }
+
+    // B
+    rollB = rollDice();
+    attemptsB++;
+    console.log(`Player B rolled: ${rollB}`);
+
+    if (rollB === 3) {
+      console.log(`Player B wins with ${attemptsB} attempts!`);
+      return `Winner: Player B`;
+    }
   }
 };
 
-const result = handleCalculate(1, 20, "*");
-console.log(result);
+console.log(checkWinner());
