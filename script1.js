@@ -1,61 +1,73 @@
-// let users = [
-//   { name: "Temo", age: 25 },
-//   { name: "Lasha", age: 21 },
-//   { name: "Ana", age: 28 },
-// ];
-// // task 1 -------------------
-// let younger = (users) => {
-//   let ages = users.map((user) => user.age);
-//   return Math.min(...ages);
+// დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს n ცალ რიცხვს (n > 2). ფუნქციამ უნდა დააბრუნოს 2 - ელემენტიანი მასივი,
+// სადაც პირველი ელემენტია პირველი და
+// მეორე პარამეტრის ჯამი, ხოლო მეორეელემენტი - მესამე ელემენტიდანდაწყებული ყველა დანარჩენის ნამრავლი
+
+// let handleNumbers = (...numbers) => {
+//   if (numbers.length <= 2) {
+//     return "Enter more than 2 numbers";
+//   }
+
+//   let sumOfFirstTwo = numbers[0] + numbers[1];
+//   let restMultiple = numbers.slice(2).reduce((accumulator, currentValue) => {
+//     return accumulator * currentValue;
+//   }, 1);
+
+//   return [sumOfFirstTwo, restMultiple];
 // };
-// let result = younger(users);
+
+// const result = handleNumbers(1, 2, 4, 5, 6);
+
 // console.log(result);
-// task 2 ---------
-// let user = {
-//   name: "nestani",
-//   lastName: "datunashvili",
-//   age: 28,
+
+// დავუშვათ გვინდა ობიექტიდან წავიკითხოთ შემდეგი ველი: user.banks[2].address.city. დაწერე ფუნქცია, რომელიც
+// პარამეტრად მიიღებს user ობიექტს და დააბრუნებს cityს. გამოიყენე destructuring-ი. თუ ასეთი
+// ველი არ არსებობს უნდა დაბრუნდესundefined
+
+// let users = {
+//   info: [
+//     {},
+//     {},
+//     {
+//       address: {
+//         city: "Tbilisi",
+//       },
+//     },
+//   ],
 // };
-// let newObJ = (user) => {
-//   const newObject = {};
-//   Object.entries(user).forEach((entry) => {
-//     newObject[entry[0]] = entry[1];
-//   });
-//   return newObject;
+
+// const getCityFromUsers = (users) => {
+//   const { info } = users;
+
+//   if (info && info[2] && info[2].address) {
+//     const { city } = info[2].address;
+//     return city;
+//   }
+//   return undefined;
 // };
-// let result = newObJ(user);
-// console.log(result);
-// console.log(user);
-// task 3 ---------------
 
-const rollDice = () => Math.floor(Math.random() * 6) + 1;
+// console.log(getCityFromUsers(users));
 
-let checkWinner = () => {
-  let attemptsA = 0;
-  let attemptsB = 0;
-  let rollA, rollB;
+// დაწერე ფუნქცია, რომელიც პარამეტრად   მიიღებს ნებისმიერ ობიექტს და  დააბრუნებს იგივე მნიშვნელობების მქონე ახალ (განსხვავებულ) ობიექტს
+//  გაითვალისწინე, რომ თუ ობიექტში კიდევ
+// სხვა ობიექტებია იმათი ასლებიც უნდა
+// შეიქმნას   გამოიყენეთ (...) ოპერატორი
 
-  while (true) {
-    // A
-    rollA = rollDice();
-    attemptsA++;
-    console.log(`Player A rolled: ${rollA}`);
-
-    if (rollA === 3) {
-      console.log(`Player A wins with ${attemptsA} attempts!`);
-      return `Winner: Player A`;
-    }
-
-    // B
-    rollB = rollDice();
-    attemptsB++;
-    console.log(`Player B rolled: ${rollB}`);
-
-    if (rollB === 3) {
-      console.log(`Player B wins with ${attemptsB} attempts!`);
-      return `Winner: Player B`;
-    }
-  }
+let user = {
+  name: "nestani",
+  lastName: "Joe",
+  adress: {
+    city: "Tbilisi",
+  },
+  number: [1, 2, 3],
 };
 
-console.log(checkWinner());
+let copyObj = (obj) => {
+  let copyObj = {
+    ...obj,
+    address: { ...obj.address },
+    number: [...obj.number],
+  };
+  return copyObj;
+};
+
+console.log(copyObj(user));
