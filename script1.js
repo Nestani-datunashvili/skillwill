@@ -1,73 +1,56 @@
-// დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს n ცალ რიცხვს (n > 2). ფუნქციამ უნდა დააბრუნოს 2 - ელემენტიანი მასივი,
-// სადაც პირველი ელემენტია პირველი და
-// მეორე პარამეტრის ჯამი, ხოლო მეორეელემენტი - მესამე ელემენტიდანდაწყებული ყველა დანარჩენის ნამრავლი
+// დაწერე ფუნქცია, რომელიც მიიღებს სამ პარამეტრს (string, valueToReplace, valueToReplaceWith), ჩაანაცვლებს "valueToReplace"-ს "valueToReplaceWith" მნიშვნელობით და დააბრუნებს ახალ stringს
 
-// let handleNumbers = (...numbers) => {
-//   if (numbers.length <= 2) {
-//     return "Enter more than 2 numbers";
+// let replaceStr = (string, valueToReplace, valueToReplaceWith) => {
+//   let strIndex = string.indexOf(valueToReplace);
+
+//   if (strIndex === -1) {
+//     return string;
 //   }
 
-//   let sumOfFirstTwo = numbers[0] + numbers[1];
-//   let restMultiple = numbers.slice(2).reduce((accumulator, currentValue) => {
-//     return accumulator * currentValue;
-//   }, 1);
+//   let newStr =
+//     string.substring(0, strIndex) +
+//     valueToReplaceWith +
+//     string.substring(strIndex + valueToReplace.length);
 
-//   return [sumOfFirstTwo, restMultiple];
+//   return newStr;
 // };
 
-// const result = handleNumbers(1, 2, 4, 5, 6);
+// console.log(replaceStr("demetre datunashvili", "datunashvili", "bekauri"));
 
-// console.log(result);
+// დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს string ტიპის მნიშვნელობას (წინადადებას), მასში ყოველ სიტყვას
+// გადაწერს დიდი ასოთი და დააბრუნებს ახალ წინადადებას
 
-// დავუშვათ გვინდა ობიექტიდან წავიკითხოთ შემდეგი ველი: user.banks[2].address.city. დაწერე ფუნქცია, რომელიც
-// პარამეტრად მიიღებს user ობიექტს და დააბრუნებს cityს. გამოიყენე destructuring-ი. თუ ასეთი
-// ველი არ არსებობს უნდა დაბრუნდესundefined
+// let strUpperCase = (str) => {
+//   const words = str.split(" ");
 
-// let users = {
-//   info: [
-//     {},
-//     {},
-//     {
-//       address: {
-//         city: "Tbilisi",
-//       },
-//     },
-//   ],
+//   const capitalizeFirstLetter = words
+//     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+//     .join(" ");
+//   return capitalizeFirstLetter;
 // };
 
-// const getCityFromUsers = (users) => {
-//   const { info } = users;
+// console.log(strUpperCase("i love you"));
 
-//   if (info && info[2] && info[2].address) {
-//     const { city } = info[2].address;
-//     return city;
-//   }
-//   return undefined;
-// };
+// დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს მომხმარებლების მასივს და
+// დააბრუნებს დალაგებულ მასივს მომხმარებლების ასაკის ზრდადობის მიხედვით
 
-// console.log(getCityFromUsers(users));
+// let ageArr = [5, 8, 9, 33, 2221, 32, -33, -9];
 
-// დაწერე ფუნქცია, რომელიც პარამეტრად   მიიღებს ნებისმიერ ობიექტს და  დააბრუნებს იგივე მნიშვნელობების მქონე ახალ (განსხვავებულ) ობიექტს
-//  გაითვალისწინე, რომ თუ ობიექტში კიდევ
-// სხვა ობიექტებია იმათი ასლებიც უნდა
-// შეიქმნას   გამოიყენეთ (...) ოპერატორი
+// let sortArr = (arr) => arr.sort((a, b) => a - b);
 
-let user = {
-  name: "nestani",
-  lastName: "Joe",
-  adress: {
-    city: "Tbilisi",
-  },
-  number: [1, 2, 3],
+// console.log(sortArr(ageArr));
+
+//====================
+
+let users = [
+  { name: "Vache", age: 76 },
+  { name: "Lasha", age: 30 },
+  { name: "Luka", age: 44 },
+  { name: "Saba", age: 20 },
+];
+
+let sortAge = (arr) => {
+  return users.slice().sort((a, b) => a.age - b.age);
 };
 
-let copyObj = (obj) => {
-  let copyObj = {
-    ...obj,
-    address: { ...obj.address },
-    number: [...obj.number],
-  };
-  return copyObj;
-};
-
-console.log(copyObj(user));
+console.log(sortAge(users));
