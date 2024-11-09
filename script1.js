@@ -1,61 +1,56 @@
-// let users = [
-//   { name: "Temo", age: 25 },
-//   { name: "Lasha", age: 21 },
-//   { name: "Ana", age: 28 },
-// ];
-// // task 1 -------------------
-// let younger = (users) => {
-//   let ages = users.map((user) => user.age);
-//   return Math.min(...ages);
+// დაწერე ფუნქცია, რომელიც მიიღებს სამ პარამეტრს (string, valueToReplace, valueToReplaceWith), ჩაანაცვლებს "valueToReplace"-ს "valueToReplaceWith" მნიშვნელობით და დააბრუნებს ახალ stringს
+
+// let replaceStr = (string, valueToReplace, valueToReplaceWith) => {
+//   let strIndex = string.indexOf(valueToReplace);
+
+//   if (strIndex === -1) {
+//     return string;
+//   }
+
+//   let newStr =
+//     string.substring(0, strIndex) +
+//     valueToReplaceWith +
+//     string.substring(strIndex + valueToReplace.length);
+
+//   return newStr;
 // };
-// let result = younger(users);
-// console.log(result);
-// task 2 ---------
-// let user = {
-//   name: "nestani",
-//   lastName: "datunashvili",
-//   age: 28,
+
+// console.log(replaceStr("demetre datunashvili", "datunashvili", "bekauri"));
+
+// დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს string ტიპის მნიშვნელობას (წინადადებას), მასში ყოველ სიტყვას
+// გადაწერს დიდი ასოთი და დააბრუნებს ახალ წინადადებას
+
+// let strUpperCase = (str) => {
+//   const words = str.split(" ");
+
+//   const capitalizeFirstLetter = words
+//     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+//     .join(" ");
+//   return capitalizeFirstLetter;
 // };
-// let newObJ = (user) => {
-//   const newObject = {};
-//   Object.entries(user).forEach((entry) => {
-//     newObject[entry[0]] = entry[1];
-//   });
-//   return newObject;
-// };
-// let result = newObJ(user);
-// console.log(result);
-// console.log(user);
-// task 3 ---------------
 
-const rollDice = () => Math.floor(Math.random() * 6) + 1;
+// console.log(strUpperCase("i love you"));
 
-let checkWinner = () => {
-  let attemptsA = 0;
-  let attemptsB = 0;
-  let rollA, rollB;
+// დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს მომხმარებლების მასივს და
+// დააბრუნებს დალაგებულ მასივს მომხმარებლების ასაკის ზრდადობის მიხედვით
 
-  while (true) {
-    // A
-    rollA = rollDice();
-    attemptsA++;
-    console.log(`Player A rolled: ${rollA}`);
+// let ageArr = [5, 8, 9, 33, 2221, 32, -33, -9];
 
-    if (rollA === 3) {
-      console.log(`Player A wins with ${attemptsA} attempts!`);
-      return `Winner: Player A`;
-    }
+// let sortArr = (arr) => arr.sort((a, b) => a - b);
 
-    // B
-    rollB = rollDice();
-    attemptsB++;
-    console.log(`Player B rolled: ${rollB}`);
+// console.log(sortArr(ageArr));
 
-    if (rollB === 3) {
-      console.log(`Player B wins with ${attemptsB} attempts!`);
-      return `Winner: Player B`;
-    }
-  }
+//====================
+
+let users = [
+  { name: "Vache", age: 76 },
+  { name: "Lasha", age: 30 },
+  { name: "Luka", age: 44 },
+  { name: "Saba", age: 20 },
+];
+
+let sortAge = (arr) => {
+  return users.slice().sort((a, b) => a.age - b.age);
 };
 
-console.log(checkWinner());
+console.log(sortAge(users));
