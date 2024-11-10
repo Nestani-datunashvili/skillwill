@@ -1,56 +1,66 @@
-// დაწერე ფუნქცია, რომელიც მიიღებს სამ პარამეტრს (string, valueToReplace, valueToReplaceWith), ჩაანაცვლებს "valueToReplace"-ს "valueToReplaceWith" მნიშვნელობით და დააბრუნებს ახალ stringს
+// task1============
+// const randomText = document.getElementById("random__text");
+// const hideBtn = document.getElementById("hide");
 
-// let replaceStr = (string, valueToReplace, valueToReplaceWith) => {
-//   let strIndex = string.indexOf(valueToReplace);
+// hideBtn.addEventListener("click", () => {
+//   randomText.classList.toggle("hidden");
 
-//   if (strIndex === -1) {
-//     return string;
-//   }
+//   randomText.classList.contains("hidden")
+//     ? (hideBtn.textContent = "show me")
+//     : (hideBtn.textContent = "hide me");
+// });
 
-//   let newStr =
-//     string.substring(0, strIndex) +
-//     valueToReplaceWith +
-//     string.substring(strIndex + valueToReplace.length);
+// task2============
 
-//   return newStr;
-// };
+// const container = document.createElement("div");
+// container.id = "card";
 
-// console.log(replaceStr("demetre datunashvili", "datunashvili", "bekauri"));
+// const title = document.createElement("h2");
+// title.textContent = "Gandalf";
 
-// დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს string ტიპის მნიშვნელობას (წინადადებას), მასში ყოველ სიტყვას
-// გადაწერს დიდი ასოთი და დააბრუნებს ახალ წინადადებას
+// const link = document.createElement("a");
+// link.setAttribute("href", "#");
+// link.textContent = "Go to profile";
 
-// let strUpperCase = (str) => {
-//   const words = str.split(" ");
+// container.appendChild(title);
+// container.appendChild(link);
+// document.body.appendChild(container);
 
-//   const capitalizeFirstLetter = words
-//     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-//     .join(" ");
-//   return capitalizeFirstLetter;
-// };
+// task 3 =============
+let score = 0;
 
-// console.log(strUpperCase("i love you"));
+function showQuestion(question, answers, correctAnswerIndex) {
+  const questionContainer = document.getElementById("question");
+  questionContainer.textContent = question;
 
-// დაწერე ფუნქცია, რომელიც პარამეტრად მიიღებს მომხმარებლების მასივს და
-// დააბრუნებს დალაგებულ მასივს მომხმარებლების ასაკის ზრდადობის მიხედვით
+  const answerContainer = document.querySelectorAll(".answer");
+  answerContainer.forEach((element, index) => {
+    element.textContent = answers[index];
+    element.classList.remove("correct", "incorrect");
+    element.onclick = () => checkAnswer(element);
+  });
+}
 
-// let ageArr = [5, 8, 9, 33, 2221, 32, -33, -9];
+let checkAnswer = (selected) => {
+  const answers = document.querySelectorAll(".answer");
+  const selectedAnswerIndex = Array.from(answers).indexOf(selected);
 
-// let sortArr = (arr) => arr.sort((a, b) => a - b);
-
-// console.log(sortArr(ageArr));
-
-//====================
-
-let users = [
-  { name: "Vache", age: 76 },
-  { name: "Lasha", age: 30 },
-  { name: "Luka", age: 44 },
-  { name: "Saba", age: 20 },
-];
-
-let sortAge = (arr) => {
-  return users.slice().sort((a, b) => a.age - b.age);
+  if (selectedAnswerIndex === correctAnswerIndex) {
+    selected.classList.add("correct");
+    score++;
+  } else {
+    selected.classList.add("incorrect");
+  }
+  updateScore();
 };
 
-console.log(sortAge(users));
+function updateScore() {
+  const scoreContainer = document.getElementById("score");
+  scoreContainer.textContent = `${score}`;
+}
+
+const question = "what is the capital of Tbilisi";
+const answers = ["tbilisi", "zugdidi", "chxorotsku"];
+const correctAnswerIndex = 0;
+
+showQuestion(question, answers, correctAnswerIndex);
