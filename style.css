@@ -1,3 +1,57 @@
-.hidden {
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px 50px;
+  position: relative;
+}
+
+.task {
+  margin-bottom: 40px;
+}
+
+.btn {
+  border: none;
+  padding: 10px 30px;
+  font-size: 16px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal_container {
   display: none;
+}
+
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0000007e;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#modal {
+  position: relative;
+  width: 300px;
+  height: fit-content;
+  text-align: center;
+  color: #fff;
+}
+
+#close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  border: none;
+  background: transparent;
 }

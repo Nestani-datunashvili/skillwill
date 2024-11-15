@@ -8,21 +8,36 @@
   </head>
   <body>
     <!-- task 1 -->
+    <div class="task">
+      <button id="btn" class="btn" onclick="handleModal()">open modal</button>
 
-    <!-- <div id="random__text">hello world!</div>
-    <button id="hide">hide me</button> -->
+      <div id="modalContainer" class="modal_container">
+        <div id="modal">
+          <button id="close" onclick="handleModal()">X</button>
+
+          <h2 id="modal_title">Modal Title</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt odio
+            quae ipsum et tempora magni atque, ab nulla quia inventore
+            consectetur labore! Ipsam sunt nisi praesentium? Doloremque unde
+            fuga optio?
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- task 2 -->
+
+    <div class="task">
+      <input id="input" type="text" placeholder="enter color" />
+      <button class="btn" onclick="handleBgColor()">change color</button>
+    </div>
 
     <!-- task 3 -->
-
-    <div>
-      <h1>quiz</h1>
-      <div id="quation_1">
-        <div id="question"></div>
-        <div class="answer" onclick="checkAnswer(this)">Tbilisi</div>
-        <div class="answer" onclick="checkAnswer(this)">zugdidi</div>
-        <div class="answer" onclick="checkAnswer(this)">chxorotsku</div>
-        <div id="score"></div>
-      </div>
+    <div class="task">
+      <input id="number_input" type="text" placeholder="enter numbers " />
+      <button class="btn" onclick="handleNumberAvarge()">enter numbers</button>
+      <span id="avarageResult"></span>
     </div>
     <script src="./script1.js"></script>
   </body>
