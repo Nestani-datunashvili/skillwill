@@ -1,36 +1,60 @@
-const handleModal = () => {
-  const modal = document.getElementById("modalContainer");
-  modal.classList.toggle("active");
-};
+async function makeToys(delay) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() > 0.1) {
+        resolve("უდეფექტო");
+      } else {
+        resolve("დეფექტური");
+      }
+    }, delay);
+  });
+}
 
-const handleBgColor = () => {
-  const colors = ["red", "blue", "green", "black", "white"];
-  const input = document.getElementById("input");
-  const inputValue = document.getElementById("input").value.toLowerCase();
+async function sellToys(status, delay) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (status === "უდეფექტო") {
+        if (Math.random() > 0.7) {
+          resolve("გაიყიდა");
+        } else {
+          resolve("ვერ გაიყიდა");
+        }
+      } else {
+        reject("სტატუსი არ არის 'უდეფექტო'");
+      }
+    }, delay);
+  });
+}
 
-  if (colors.includes(inputValue)) {
-    document.body.style.backgroundColor = `${inputValue}`;
-    input.value = "";
-  } else {
-    alert("enter color from: blue, green, black, white");
+async function deliverToys(sellStatus, delay) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (sellStatus === "გაიყიდა") {
+        if (Math.random() > 0.5) {
+          resolve("სურს მიწოდება");
+        } else {
+          resolve("არ სურს მიწოდება");
+        }
+      } else {
+        reject("სტატუსი არ არის 'გაყიდული'");
+      }
+    }, delay);
+  });
+}
+
+const handlePromises = async () => {
+  try {
+    const status = await makeToys(2000);
+    console.log(`Toy status: ${status}`);
+
+    const result = await sellToys(status, 1000);
+    console.log(`Sell status: ${result}`);
+
+    const delivery = await deliverToys(result, 2000);
+    console.log(`Delivery status: ${delivery}`);
+  } catch (err) {
+    console.log(`Error: ${err}`);
   }
 };
 
-const handleNumberAvarge = () => {
-  const result = document.getElementById("avarageResult");
-  const input = document.getElementById("number_input");
-  const inputValue = document
-    .getElementById("number_input")
-    .value.split(":")
-    .map(Number);
-
-  if (!input.value.trim() || inputValue.some(isNaN)) {
-    alert("Enter valid numbers separated by ':'");
-    return;
-  }
-
-  const average =
-    inputValue.reduce((acc, number) => acc + number, 0) / inputValue.length;
-
-  result.textContent = `avarage of those numbers is ${average}`;
-};
+handlePromises();
